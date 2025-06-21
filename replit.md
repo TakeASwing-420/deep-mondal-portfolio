@@ -102,11 +102,14 @@ This is a full-stack web application for Deep Mondal's personal portfolio websit
 - **Backend**: Bundled to `dist/index.js` with external package references
 - **Assets**: Optimized and fingerprinted for caching
 
-## Changelog
+## Recent Changes
 
 ```
-Changelog:
-- June 21, 2025. Initial setup
+- June 21, 2025: Created complete static portfolio website for Deep Mondal
+  - Implemented responsive design with modern UI components
+  - Added all sections: Hero, About, Projects, Experience, Skills, Contact
+  - Integrated profile picture and resume information
+  - Fixed CSS import order issue for proper styling
 ```
 
 ## User Preferences
