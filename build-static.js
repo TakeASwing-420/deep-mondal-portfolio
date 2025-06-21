@@ -7,8 +7,17 @@ import path from 'path';
 console.log('Building static site for GitHub Pages...');
 
 try {
-  // Run the build command
-  execSync('npx vite build --config vite.config.static.ts', { stdio: 'inherit' });
+  // Clean dist folder first
+  if (fs.existsSync('./dist')) {
+    fs.rmSync('./dist', { recursive: true, force: true });
+  }
+  
+  // Run the build command with timeout
+  console.log('Running vite build...');
+  execSync('npx vite build --config vite.config.static.ts', { 
+    stdio: 'inherit',
+    timeout: 120000 // 2 minutes timeout
+  });
   
   // Copy attached assets to dist folder
   const assetsSource = './attached_assets';
@@ -27,6 +36,7 @@ try {
   }
   
   console.log('Static build completed successfully!');
+  console.log('Files in dist:', fs.readdirSync('./dist'));
 } catch (error) {
   console.error('Build failed:', error.message);
   process.exit(1);
