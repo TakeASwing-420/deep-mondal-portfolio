@@ -19,7 +19,7 @@ export default function HeroSection() {
               Hi, I'm <span className="text-primary">Deep Mondal</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8">
-              Computer Science Student & Blockchain Developer
+              Computer Science Student & Enthusiastic Hacker
             </p>
             <p className="text-lg text-gray-600 mb-8 max-w-2xl">
               Passionate about building innovative solutions with cutting-edge technologies. 
