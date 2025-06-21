@@ -5,7 +5,7 @@ import path from 'path';
 // Configuration for building static site for GitHub Pages
 export default defineConfig({
   plugins: [react()],
-  base: '/your-repo-name/', // Replace with your GitHub repository name
+  base: 'deep-mondal-portfolio',
   build: {
     outDir: 'dist',
     sourcemap: false,
