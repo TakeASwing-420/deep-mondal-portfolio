@@ -1,119 +1,108 @@
-# Deep Mondal Portfolio - System Architecture
+# Replit.md
 
 ## Overview
 
-This is a full-stack web application for Deep Mondal's personal portfolio website. The application is built using a modern React frontend with a Node.js/Express backend, designed to showcase projects, experience, and skills in software development and blockchain technology.
+This is a full-stack web application featuring a personal portfolio website for a computer science student and blockchain developer. The application is built with a modern tech stack including React frontend, Express.js backend, and PostgreSQL database with Drizzle ORM. The project is designed as a single-page application showcasing professional experience, projects, skills, and contact information.
 
 ## System Architecture
 
 ### Frontend Architecture
-- **Framework**: React 18 with TypeScript for type safety
-- **UI Library**: shadcn/ui components built on Radix UI primitives
-- **Styling**: Tailwind CSS with custom design tokens
-- **Routing**: Wouter for lightweight client-side routing
-- **State Management**: TanStack Query (React Query) for server state management
-- **Build Tool**: Vite for fast development and optimized production builds
+- **Framework**: React with TypeScript
+- **Styling**: Tailwind CSS with shadcn/ui component library
+- **Routing**: Wouter for client-side routing
+- **State Management**: TanStack Query for server state management
+- **Build Tool**: Vite for development and production builds
 
 ### Backend Architecture
-- **Runtime**: Node.js with Express.js framework
-- **Language**: TypeScript for type safety across the stack
-- **Development**: tsx for TypeScript execution in development
-- **Production Build**: esbuild for fast bundling
+- **Runtime**: Node.js with Express.js
+- **Language**: TypeScript
+- **Database**: PostgreSQL with Drizzle ORM
+- **Session Management**: Express sessions with PostgreSQL store
+- **API Style**: RESTful API design with `/api` prefix
 
-### Data Storage Strategy
-- **ORM**: Drizzle ORM for type-safe database operations
-- **Database**: PostgreSQL (configured via Drizzle config)
-- **Connection**: Neon Database serverless driver for cloud PostgreSQL
-- **Schema**: Shared schema definitions between client and server
-- **Development Storage**: In-memory storage implementation for rapid prototyping
+### Development Setup
+- **Development Server**: Vite dev server with HMR
+- **Backend Dev**: tsx for TypeScript execution
+- **Database**: Neon Database (serverless PostgreSQL)
+- **Build Process**: Vite for frontend, esbuild for backend
 
 ## Key Components
 
-### Shared Components
-- **Schema Definition**: Centralized database schema using Drizzle ORM
-- **Type Safety**: Shared TypeScript types between frontend and backend
-- **Validation**: Zod schemas for runtime type validation
+### Database Schema
+- **Users Table**: Basic user management with id, username, and password fields
+- **Drizzle Configuration**: PostgreSQL dialect with schema validation using Zod
 
 ### Frontend Components
-- **Navigation**: Fixed navigation with smooth scrolling
-- **Hero Section**: Landing area with profile image and call-to-action
+- **Navigation**: Fixed header with smooth scrolling navigation
+- **Hero Section**: Main landing area with call-to-action buttons
 - **About Section**: Personal information and education details
-- **Projects Section**: Portfolio showcase with technology badges
-- **Experience Section**: Professional experience timeline
-- **Skills Section**: Categorized technical skills display
+- **Projects Section**: Showcase of development projects with technologies used
+- **Experience Section**: Professional experience and achievements
+- **Skills Section**: Technical skills organized by category
 - **Contact Section**: Contact form with toast notifications
-- **UI Components**: Comprehensive design system with 40+ reusable components
 
-### Backend Components
-- **Storage Interface**: Abstracted storage layer supporting multiple implementations
-- **Route Registration**: Centralized route management system
-- **Development Server**: Vite integration for hot module replacement
-- **Error Handling**: Centralized error handling middleware
+### UI System
+- **Design System**: shadcn/ui components with consistent styling
+- **Theme**: Light theme with neutral color palette
+- **Typography**: Inter font family
+- **Responsive Design**: Mobile-first approach with Tailwind breakpoints
+
+### Storage Layer
+- **Interface**: IStorage interface for database operations
+- **Implementation**: MemStorage for in-memory development storage
+- **CRUD Operations**: User creation, retrieval by ID and username
 
 ## Data Flow
 
-### Development Mode
-1. Client requests served by Vite development server
-2. API requests proxied to Express server on port 5000
-3. Hot module replacement for instant updates
-4. In-memory storage for rapid development iteration
-
-### Production Mode
-1. Static assets served from Express server
-2. API routes handled by Express backend
-3. Database operations through Drizzle ORM
-4. Optimized bundles for fast loading
+1. **Frontend Requests**: Client makes API calls using TanStack Query
+2. **Express Middleware**: Request logging and JSON parsing
+3. **Route Handling**: Routes prefixed with `/api` for backend operations
+4. **Storage Layer**: Database operations through storage interface
+5. **Response**: JSON responses with appropriate HTTP status codes
 
 ## External Dependencies
 
-### Core Dependencies
-- **@radix-ui/***: Accessible UI component primitives
-- **@tanstack/react-query**: Server state management
-- **drizzle-orm**: Type-safe ORM for database operations
-- **@neondatabase/serverless**: Serverless PostgreSQL driver
-- **wouter**: Lightweight React router
+### Frontend Dependencies
+- React ecosystem (React, React DOM)
+- UI components (@radix-ui/* components)
+- State management (@tanstack/react-query)
+- Styling (Tailwind CSS, class-variance-authority)
+- Forms (react-hook-form, @hookform/resolvers)
+- Utilities (date-fns, clsx, cmdk)
 
-### Development Tools
-- **Vite**: Build tool and development server
-- **TypeScript**: Static type checking
-- **Tailwind CSS**: Utility-first CSS framework
-- **esbuild**: Fast bundler for production
+### Backend Dependencies
+- Express.js for server framework
+- Drizzle ORM for database operations
+- Neon Database for PostgreSQL hosting
+- Session management (express-session, connect-pg-simple)
+- Development tools (tsx, esbuild)
 
-### Replit Integration
-- **@replit/vite-plugin-runtime-error-modal**: Development error overlay
-- **@replit/vite-plugin-cartographer**: Development tooling
+### Build Dependencies
+- Vite with React plugin
+- TypeScript compilation
+- PostCSS with Tailwind CSS
+- ESBuild for backend bundling
 
 ## Deployment Strategy
 
-### Development Environment
-- **Platform**: Replit with Node.js 20, Web, and PostgreSQL 16 modules
+### Production Build
+- **Frontend**: Vite builds to `dist/public` directory
+- **Backend**: ESBuild bundles server to `dist/index.js`
+- **Static Assets**: Served by Express in production
+
+### Environment Configuration
+- **Development**: NODE_ENV=development with hot reloading
+- **Production**: NODE_ENV=production with bundled assets
+- **Database**: DATABASE_URL environment variable required
+
+### Hosting Platform
+- **Target**: Replit autoscale deployment
 - **Port Configuration**: Internal port 5000, external port 80
-- **Hot Reload**: Enabled through Vite development server
-- **Database**: PostgreSQL provisioned through Replit
+- **Process Management**: npm scripts for development and production
 
-### Production Deployment
-- **Target**: Autoscale deployment on Replit
-- **Build Process**: Vite build for frontend, esbuild for backend
-- **Static Assets**: Served from Express server
-- **Database**: PostgreSQL with connection pooling via Neon
-
-### Build Configuration
-- **Frontend**: Compiled to `dist/public` directory
-- **Backend**: Bundled to `dist/index.js` with external package references
-- **Assets**: Optimized and fingerprinted for caching
-
-## Recent Changes
-
-```
-- June 21, 2025: Created complete static portfolio website for Deep Mondal
-  - Implemented responsive design with modern UI components
-  - Added all sections: Hero, About, Projects, Experience, Skills, Contact
-  - Integrated profile picture and resume information
-  - Fixed CSS import order issue for proper styling
-```
+## Changelog
+- June 21, 2025. Initial setup
 
 ## User Preferences
 
-```
 Preferred communication style: Simple, everyday language.
-```
