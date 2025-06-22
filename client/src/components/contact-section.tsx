@@ -27,16 +27,16 @@ export default function ContactSection() {
                           window.location.hostname.includes('replit.dev') ||
                           window.location.hostname.includes('replit.app');
 
-      if (!isDevelopment) {
-        // Static site fallback
-        toast({
-          title: "Thank you for your message!",
-          description: "Please email me directly at dm7041979@gmail.com as this is a static site.",
-        });
-        setFormData({ name: "", email: "", message: "" });
-        setIsSubmitting(false);
-        return;
-      }
+      // if (!isDevelopment) {
+      //   // Static site fallback
+      //   toast({
+      //     title: "Thank you for your message!",
+      //     description: "Please email me directly at dm7041979@gmail.com as this is a static site.",
+      //   });
+      //   setFormData({ name: "", email: "", message: "" });
+      //   setIsSubmitting(false);
+      //   return;
+      // }
 
       const response = await fetch('/api/contact', {
         method: 'POST',
