@@ -5,10 +5,11 @@ import path from 'path';
 // Configuration for building static site for GitHub Pages
 export default defineConfig({
   plugins: [react()],
-  base: 'deep-mondal-portfolio',
+  base: '/deep-mondal-portfolio/',
   build: {
-    outDir: 'dist',
+    outDir: '../dist',
     sourcemap: false,
+    emptyOutDir: true,
     rollupOptions: {
       output: {
         manualChunks: undefined,

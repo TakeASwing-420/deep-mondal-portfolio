@@ -31,10 +31,13 @@ jobs:
 
     - name: Copy assets
       run: |
-        mkdir -p dist/assets
         if [ -d "attached_assets" ]; then
+          mkdir -p dist/assets
           cp attached_assets/* dist/assets/ 2>/dev/null || true
         fi
+        
+    - name: Create .nojekyll file
+      run: touch dist/.nojekyll
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
