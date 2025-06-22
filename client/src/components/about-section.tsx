@@ -15,7 +15,7 @@ export default function AboutSection() {
           <div>
             <h3 className="text-2xl font-bold text-secondary mb-6">My Journey</h3>
             <p className="text-gray-600 mb-6">
-              Currently pursuing B.Tech in Computer Science and Engineering at IIIT Kalyani with an outstanding CGPA of 9.22/10.0. 
+              Currently pursuing B.Tech in Computer Science and Engineering at IIIT Kalyani with a decent CGPA of 9.22/10.0. 
               My academic journey has been complemented by hands-on experience in blockchain development and full-stack applications.
             </p>
             <p className="text-gray-600 mb-6">
