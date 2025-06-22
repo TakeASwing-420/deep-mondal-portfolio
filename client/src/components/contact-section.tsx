@@ -128,7 +128,7 @@ export default function ContactSection() {
               
               <div className="flex space-x-6 mt-8">
                 <a 
-                  href="www.linkedin.com/in/deep-mondal-268a93242" 
+                  href="https://www.linkedin.com/in/deep-mondal-268a93242" 
                   className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
                 >
                   <SiLinkedin className="w-6 h-6" />
