@@ -1,4 +1,5 @@
-import { Mail, Linkedin, Github } from "lucide-react";
+import { Mail} from "lucide-react";
+import { SiLinkedin, SiGithub } from "react-icons/si";
 
 export default function AboutSection() {
   return (
@@ -31,16 +32,16 @@ export default function AboutSection() {
                 <Mail className="w-6 h-6" />
               </a>
               <a 
-                href="#" 
+                href="https://www.linkedin.com/in/deep-mondal-268a93242" 
                 className="text-primary hover:text-blue-700 transition-colors p-2 rounded-full hover:bg-blue-50"
               >
-                <Linkedin className="w-6 h-6" />
+                <SiLinkedin className="w-6 h-6" />
               </a>
               <a 
-                href="#" 
+                href="https://github.com/TakeASwing-420" 
                 className="text-primary hover:text-blue-700 transition-colors p-2 rounded-full hover:bg-blue-50"
               >
-                <Github className="w-6 h-6" />
+                <SiGithub className="w-6 h-6" />
               </a>
             </div>
           </div>

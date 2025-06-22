@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MapPin, Linkedin, Github } from "lucide-react";
+import { Mail, MapPin} from "lucide-react";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 import { useToast } from "@/hooks/use-toast";
 
 export default function ContactSection() {
@@ -20,15 +21,56 @@ export default function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+    try {
+      // Check if we're in development mode (has backend)
+      const isDevelopment = window.location.hostname === 'localhost' || 
+                          window.location.hostname.includes('replit.dev') ||
+                          window.location.hostname.includes('replit.app');
+
+      if (!isDevelopment) {
+        // Static site fallback
+        toast({
+          title: "Thank you for your message!",
+          description: "Please email me directly at dm7041979@gmail.com as this is a static site.",
+        });
+        setFormData({ name: "", email: "", message: "" });
+        setIsSubmitting(false);
+        return;
+      }
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-      setFormData({ name: "", email: "", message: "" });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        toast({
+          title: "Message sent!",
+          description: result.message,
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        toast({
+          title: "Error",
+          description: result.error || "Failed to send message. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('Contact form error:', error);
+      toast({
+        title: "Error",
+        description: "Network error. Please email me directly at dm7041979@gmail.com",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -86,16 +128,16 @@ export default function ContactSection() {
               
               <div className="flex space-x-6 mt-8">
                 <a 
-                  href="#" 
+                  href="www.linkedin.com/in/deep-mondal-268a93242" 
                   className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
                 >
-                  <Linkedin className="w-6 h-6" />
+                  <SiLinkedin className="w-6 h-6" />
                 </a>
                 <a 
-                  href="#" 
+                  href="https://github.com/TakeASwing-420" 
                   className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-800 hover:text-white transition-colors"
                 >
-                  <Github className="w-6 h-6" />
+                  <SiGithub className="w-6 h-6" />
                 </a>
               </div>
             </div>
